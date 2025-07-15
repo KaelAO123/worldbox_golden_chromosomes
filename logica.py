@@ -13,10 +13,9 @@ class Gen:
     def obtener_rama(self,numero_rama):
         return self.ramas[numero_rama]
 
-
 class Casilla:
-    def __init__(self, gen=None):
-        self.gen = gen
+    def __init__(self):
+        self.gen = None
         self.casillas = [None,None,None,None]
     
     def conectar_casilla(self, posicion, casilla):
@@ -38,9 +37,6 @@ class Casilla:
         self.gen = gen
         return True
         
-            
-    
-
 def cromosoma_dorado(casilla_index, cromosoma, genes):
     if casilla_index == len(cromosoma):
         return True 
@@ -57,7 +53,7 @@ def cromosoma_dorado_no_repetido(casilla_index, cromosoma, genes_disponibles):
     if casilla_index == len(cromosoma):
         return True 
 
-    casilla_actual = cromosoma[casilla_index]
+    casilla_actual = cromosoma.get(casilla_index)
     
     for i in range(len(genes_disponibles)):
         gen = genes_disponibles[i]
@@ -71,7 +67,7 @@ def cromosoma_dorado_no_repetido(casilla_index, cromosoma, genes_disponibles):
 # ? colores = ["Rojo","Azul","Amarrillo","Verde"]
 GENES = [
     Gen("Warfare III",1,3,2,2),
-    Gen("Warfare III",0,1,2,3),
+    Gen("Warfare II",0,1,2,3),
     Gen("Warfare I",1,0,1,2),
     Gen("Stewardhip III",2,1,3,3),
     Gen("Stewardhip II",1,2,0,2),
@@ -112,43 +108,24 @@ GENES = [
     Gen("Armor II",2,3,3,0),
     Gen("Armor I",3,1,3,3)
 ]
-n = 22
-cromosoma = [Casilla() for _ in range(n)]
-cromosoma[0].conectar_casilla(3,cromosoma[1])
-cromosoma[1].conectar_casilla(2,cromosoma[2])
-cromosoma[1].conectar_casilla(3,cromosoma[3])
-cromosoma[2].conectar_casilla(2,cromosoma[8])
-cromosoma[3].conectar_casilla(3,cromosoma[4])
-cromosoma[4].conectar_casilla(2,cromosoma[5])
-cromosoma[5].conectar_casilla(3,cromosoma[6])
-cromosoma[6].conectar_casilla(2,cromosoma[7])
-cromosoma[8].conectar_casilla(2,cromosoma[9])
-cromosoma[8].conectar_casilla(3,cromosoma[10])
-cromosoma[9].conectar_casilla(1,cromosoma[12])
-cromosoma[9].conectar_casilla(2,cromosoma[15])
-cromosoma[9].conectar_casilla(3,cromosoma[11])
-cromosoma[10].conectar_casilla(2,cromosoma[11])
-cromosoma[11].conectar_casilla(2,cromosoma[18])
-cromosoma[11].conectar_casilla(3,cromosoma[19])
-cromosoma[12].conectar_casilla(2,cromosoma[13])
-cromosoma[13].conectar_casilla(2,cromosoma[14])
-cromosoma[13].conectar_casilla(3,cromosoma[15])
-cromosoma[14].conectar_casilla(3,cromosoma[16])
-cromosoma[15].conectar_casilla(3,cromosoma[18])
-cromosoma[15].conectar_casilla(2,cromosoma[16])
-cromosoma[16].conectar_casilla(3,cromosoma[17])
-cromosoma[17].conectar_casilla(4,cromosoma[18])
-cromosoma[18].conectar_casilla(3,cromosoma[20])
-cromosoma[19].conectar_casilla(2,cromosoma[20])
-cromosoma[20].conectar_casilla(3,cromosoma[21])
+n = 10
+cromosoma = {i : Casilla() for i in range(n)}
+
+cromosoma[0].conectar_casilla(1,cromosoma[1])
+cromosoma[0].conectar_casilla(3,cromosoma[2])
+cromosoma[1].conectar_casilla(2,cromosoma[5])
+cromosoma[2].conectar_casilla(2,cromosoma[3])
+cromosoma[3].conectar_casilla(2,cromosoma[4])
+cromosoma[4].conectar_casilla(1,cromosoma[5])
+cromosoma[4].conectar_casilla(2,cromosoma[7])
+cromosoma[5].conectar_casilla(2,cromosoma[6])
+cromosoma[6].conectar_casilla(3,cromosoma[7])
+cromosoma[7].conectar_casilla(2,cromosoma[8])
 
 random.shuffle(GENES)
 
 if cromosoma_dorado_no_repetido(0, cromosoma, GENES):
-    for i, c in enumerate(cromosoma):
-        print(f"{i}: {c}")
+    for i in sorted(cromosoma):
+        print(f"{i}: {cromosoma[i]}")
 else:
     print("No fue posible generar un cromosoma dorado.")
-
-
-

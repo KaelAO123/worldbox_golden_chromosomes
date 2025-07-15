@@ -12,8 +12,7 @@ function mezclar(lista) {
     return listaMezclada;
 }
 
-
-class Casilla {
+export class Casilla {
     constructor(gen) {
         this.gen = gen
         this.casillas = [null, null, null, null]
@@ -24,7 +23,15 @@ class Casilla {
         casilla.casillas[(posicion + 2) % 4] = this
     }
 
-    insertarGenDorado(gen) {
+    desconectarCasilla(posicion) {
+        const casilla = this.casillas[posicion];
+        if (casilla) {
+            casilla.casillas[(posicion + 2) % 4] = null;
+            this.casillas[posicion] = null;
+        }
+    }
+
+    insertarGenDorado(gen) {        
         for (let index = 0; index < this.casillas.length; index++) {
             if (!this.casillas[index]) {
                 continue
@@ -43,7 +50,7 @@ class Casilla {
     }
 }
 
-function cromosomaDorado(casillaIndex, cromosoma, genes) {
+export function cromosomaDorado(casillaIndex, cromosoma, genes) {
     if (casillaIndex == cromosoma.length) {
         return true
     }
@@ -58,16 +65,22 @@ function cromosomaDorado(casillaIndex, cromosoma, genes) {
     });
     return false
 }
-function cromosomaDoradoNoRepetidos(casillaIndex, cromosoma, genesDisp) {
-    if (casillaIndex == cromosoma.length) {
+
+export function cromosomaDoradoNoRepetidos(casillaIndex, cromosoma, genesDisp) {
+    if (casillaIndex == Object.keys(cromosoma).length) {
         return true
     }
     const casillaActual = cromosoma[casillaIndex]
 
     for (let index = 0; index < genesDisp.length; index++) {
-        const gen = genesDisp[index]
+        const gen = genesDisp[index] 
+        if (!casillaActual) {
+            cromosomaDoradoNoRepetidos(casillaIndex + 1, cromosoma, genesDisp)
+            return true
+        }
+        
         if (casillaActual.insertarGenDorado(gen)) {
-            siguienteGen = genesDisp.slice(0, index).concat(genesDisp.slice(index + 1))            
+            const siguienteGen = genesDisp.slice(0, index).concat(genesDisp.slice(index + 1))
             if (cromosomaDoradoNoRepetidos(casillaIndex + 1, cromosoma, siguienteGen)) {
                 return true
             }
@@ -77,16 +90,17 @@ function cromosomaDoradoNoRepetidos(casillaIndex, cromosoma, genesDisp) {
     return false
 }
 
-async function cargarGenesDesdeAPI() {
+export async function cargarGenesDesdeAPI() {
     const response = await fetch("http://localhost:5000/genes");
     const datos = await response.json();
     return mezclar(datos); 
 }
 
-let GENES = [];
 const n = 22;
-const cromosoma = Array.from({ length: n }, () => new Casilla());
-
+let cromosoma = {};
+for (let i = 0; i < n; i++) {
+    cromosoma[i] = new Casilla();
+}
 cromosoma[0].conectarCasilla(3, cromosoma[1]);
 cromosoma[1].conectarCasilla(2, cromosoma[2]);
 cromosoma[1].conectarCasilla(3, cromosoma[3]);
@@ -117,13 +131,23 @@ cromosoma[20].conectarCasilla(3, cromosoma[21]);
 
 
 async function iniciar() {
-    GENES = await cargarGenesDesdeAPI();
+    const GENES = await cargarGenesDesdeAPI();
     if (cromosomaDoradoNoRepetidos(0, cromosoma, GENES)) {
-        cromosoma.forEach((c, i) => console.log(`${i}: ${c.gen.nombre}`));
+        for (const key in cromosoma) {
+            if (Object.prototype.hasOwnProperty.call(cromosoma, key)) {
+                const element = cromosoma[key];
+                if (!element.gen) {
+                    console.log(`Casilla ${key} sin gen asignado`);
+                    continue;
+                }
+                console.log(`${key}: ${element.gen.nombre}`);
+            }
+        }
     } else {
         console.log("No fue posible generar un cromosoma dorado");
     }
 }
 
-iniciar();
+// iniciar();
 
+export default { Casilla, cromosomaDorado, cromosomaDoradoNoRepetidos, cargarGenesDesdeAPI };

@@ -5,7 +5,7 @@ import os
 import random
 
 app = Flask(__name__)
-DATA_FILE = 'algo.json'
+DATA_FILE = 'genes.json'
 CORS(app)
 def leer_datos():
     if not os.path.exists(DATA_FILE):
