@@ -1,11 +1,8 @@
-import { Casilla } from "../js/Main.js";
-
-const altoCromosoma = document.getElementById("cromosomaAlto");
-const anchoCromosoma = document.getElementById("cromosomaAncho");
+import { Casilla, cromosomaDoradoNoRepetidos, cargarGenesDesdeAPI } from "../js/Main.js";
 
 const botonCrearCromosoma = document.getElementById("crearCromosoma");
-const matrizCromosoma = document.getElementById("matrizCromosoma");
-
+const botonGenerarCromosomaDorado = document.getElementById("generarCromosomaDorado");
+botonGenerarCromosomaDorado.addEventListener("click", generarCromosomaDorado);
 const asociarCasilla = document.getElementById("asociarCasillas");
 const insertarCasilla = document.getElementById("insertarCasilla");
 
@@ -18,15 +15,15 @@ var unirCasilla = false;
 var anchoCromosomaValue = 0;
 var altoCromosomaValue = 0;
 
-const cromosoma = {};
+var cromosoma = {};
 
 botonCrearCromosoma.addEventListener("click", () => {
-    anchoCromosomaValue = parseInt(anchoCromosoma.value);
-    altoCromosomaValue = parseInt(altoCromosoma.value);
+    anchoCromosomaValue = parseInt(document.getElementById("cromosomaAncho").value);
+    altoCromosomaValue = parseInt(document.getElementById("cromosomaAlto").value);
     crearCromosoma(anchoCromosomaValue, altoCromosomaValue);
-    
+
     console.log(`Cromosoma creado con ancho: ${anchoCromosomaValue} y alto: ${altoCromosomaValue}`);
-    
+
 });
 
 //082016
@@ -58,11 +55,11 @@ asociarCasilla.addEventListener("click", () => {
 });
 
 const crearCromosoma = (ancho, alto) => {
-    matrizCromosoma.innerHTML = "";
+    cromosoma = {};
+    const matrizCromosoma = document.getElementById("matrizCromosoma");
     let auxiliar = "";
     for (let i = 0; i < alto; i++) {
         auxiliar += `<div class="cromosoma-row">`;
-
         for (let j = 0; j < ancho; j++) {
             auxiliar += `<div class="cromosoma-cell"></div>`;
         }
@@ -70,38 +67,68 @@ const crearCromosoma = (ancho, alto) => {
     }
     matrizCromosoma.innerHTML = auxiliar;
     cromosomaCeldas = document.querySelectorAll(".cromosoma-cell");
+    console.log(cromosomaCeldas);
+    
     celdasListener();
 };
 
 
 function juntarCasilla(index, indexDestino, casilla) {
     if (index - anchoCromosomaValue === indexDestino) {
-        casilla.conectarCasilla(1, cromosoma[indexDestino]);
-        console.log(`Conectando casilla desde arriba ${index} con ${indexDestino}`);
+        if (casilla.conectarCasilla(0, cromosoma[indexDestino])) {
+            cromosomaCeldas[index].classList.add("conectado", "up");
+            cromosomaCeldas[indexDestino].classList.add("conectado", "down");
+            console.log(`Conectando casilla desde arriba ${index} con ${indexDestino}`);
+        } else {
+            cromosomaCeldas[index].classList.remove("conectado", "up");
+            cromosomaCeldas[indexDestino].classList.remove("conectado", "down");
+            console.log(`Desconectado casilla desde arriba ${index} con ${indexDestino}`);
+        }
         return true;
     }
     if (index + anchoCromosomaValue === indexDestino) {
-        casilla.conectarCasilla(2, cromosoma[indexDestino]);
-        console.log(`Conectando casilla desde abajo ${index} con ${indexDestino}`);
+        if (casilla.conectarCasilla(2, cromosoma[indexDestino])) {
+            cromosomaCeldas[index].classList.add("conectado", "down");
+            cromosomaCeldas[indexDestino].classList.add("conectado", "up");
+            console.log(`Conectando casilla desde abajo ${index} con ${indexDestino}`);
+        } else {
+            cromosomaCeldas[index].classList.remove("conectado", "down");
+            cromosomaCeldas[indexDestino].classList.remove("conectado", "up");
+            console.log(`Desconectado casilla desde abajo ${index} con ${indexDestino}`);
+        }
         return true;
     }
     if (index - 1 === indexDestino && index % anchoCromosomaValue !== 0) {
-        casilla.conectarCasilla(3, cromosoma[indexDestino]);
-        console.log(`Conectando casilla desde la izquierda ${index} con ${indexDestino}`);
+        if (casilla.conectarCasilla(3, cromosoma[indexDestino])) {
+            cromosomaCeldas[index].classList.add("conectado", "left");
+            cromosomaCeldas[indexDestino].classList.add("conectado", "right");
+            console.log(`Conectando casilla desde la izquierda ${index} con ${indexDestino}`);
+        } else {
+            cromosomaCeldas[index].classList.remove("conectado", "left");
+            cromosomaCeldas[indexDestino].classList.remove("conectado", "right");
+            console.log(`Desconectado casilla desde la izquierda ${index} con ${indexDestino}`);
+        }
         return true;
     }
     if (index + 1 === indexDestino && (index + 1) % anchoCromosomaValue !== 0) {
-        casilla.conectarCasilla(4, cromosoma[indexDestino]);
-        console.log(`Conectando casilla desde la derecha ${index} con ${indexDestino}`);
+        if (casilla.conectarCasilla(1, cromosoma[indexDestino])) {
+            cromosomaCeldas[index].classList.add("conectado", "right");
+            cromosomaCeldas[indexDestino].classList.add("conectado", "left");
+            console.log(`Conectando casilla desde la derecha ${index} con ${indexDestino}`);
+        } else {
+            cromosomaCeldas[index].classList.remove("conectado", "right");
+            cromosomaCeldas[indexDestino].classList.remove("conectado", "left");
+            console.log(`Desconectado casilla desde la derecha ${index} con ${indexDestino}`);   
+        }
         return true;
     }
+    return false;
 }
 
 function celdasListener() {
     cromosomaCeldas.forEach((celda, index) => {
         celda.addEventListener("click", () => {
             if (unirCasilla) {
-                console.log(unirCasilla);
                 if (primeraCasilla === null) {
                     primeraCasilla = index;
                     console.log(`Primera casilla seleccionada: ${primeraCasilla}`);
@@ -116,7 +143,7 @@ function celdasListener() {
                     if (casillaActual && casillaDestino) {
                         if (juntarCasilla(primeraCasilla, index, casillaActual)) {
                             console.log("Conexion exitosa entre casillas.");
-                        }else{
+                        } else {
                             console.log("No se puede unir las casillas, no están adyacentes.");
                         }
                     } else {
@@ -151,6 +178,33 @@ function celdasListener() {
                     }
                 }
             }
+            console.log(cromosoma);
         });
     });
+    
+}
+
+async function generarCromosomaDorado() {
+    const GENES = await cargarGenesDesdeAPI();
+    const maximoIndex = Math.max(...Object.keys(cromosoma).map(Number), 0);
+    
+    if (cromosomaDoradoNoRepetidos(0, cromosoma, GENES, maximoIndex)) {
+        for (const key in cromosoma) {
+            const casilla = cromosoma[key];
+            cromosomaCeldas[key].style.backgroundColor = "gold";
+            cromosomaCeldas[key].textContent = casilla.gen ? casilla.gen.nombre : "";
+            if (Object.prototype.hasOwnProperty.call(cromosoma, key)) {
+                const element = cromosoma[key];
+                if (!element.gen) {
+                    console.log(`Casilla ${key} sin gen asignado`);
+                    continue;
+                }
+                console.log(`${key}: ${element.gen.nombre}`);
+            }
+        }
+    } else {
+        console.log("No fue posible generar un cromosoma dorado");
+    }
+    console.log(cromosoma);
+    
 }

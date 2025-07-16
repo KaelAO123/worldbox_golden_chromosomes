@@ -1,32 +1,124 @@
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
 }
-.cromosoma-matrix{
+
+body {
+    background-color: #f5f5f5;
+    padding: 20px;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+section {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+input, button {
+    padding: 10px;
+    margin: 5px;
+    font-size: 14px;
+}
+
+button {
+    background-color: #ffc107;
+    border: none;
+    border-radius: 5px;
+    color: #000;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e0a800;
+}
+
+.cromosoma-matrix {
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
+    margin-top: 20px;
 }
-.cromosoma-row{
-    width: 80%;
-    height: 90px;
+
+.cromosoma-row {
     display: flex;
-    gap: 30px;
+    gap: 10px;
     justify-content: center;
 }
 
-.cromosoma-cell{
-    width: 10%;
-    height: 100%;
-    border: 1px solid #000;
+.cromosoma-cell {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border: 2px solid #000;
+    position: relative;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
-.presionado{
+/* Casilla presionada */
+.presionado {
     background-color: red;
-    border: 2px solid #000;
+    border: 3px solid #000;
+}
+
+/* Casilla conectada */
+.conectado {
+    background-color: #ffd54f;
+}
+
+/* Direcciones visuales de conexión */
+.cromosoma-cell.up::before,
+.cromosoma-cell.down::after,
+.cromosoma-cell.left::before,
+.cromosoma-cell.right::after {
+    content: "";
+    position: absolute;
+    background-color: black;
+}
+
+/* Línea hacia arriba */
+.cromosoma-cell.up::before {
+    width: 4px;
+    height: 12px;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Línea hacia abajo */
+.cromosoma-cell.down::after {
+    width: 4px;
+    height: 12px;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Línea hacia la izquierda */
+.cromosoma-cell.left::before {
+    width: 12px;
+    height: 4px;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Línea hacia la derecha */
+.cromosoma-cell.right::after {
+    width: 12px;
+    height: 4px;
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
 }
