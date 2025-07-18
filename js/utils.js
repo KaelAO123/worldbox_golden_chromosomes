@@ -1,4 +1,4 @@
-import { Casilla, cromosomaDoradoNoRepetidos, cargarGenesDesdeAPI } from "../js/Main.js";
+import { Casilla, cromosomaDoradoNoRepetidos, cargarGenesDesdeAPI, mezclar } from "../js/Main.js";
 
 const botonCrearCromosoma = document.getElementById("crearCromosoma");
 const botonGenerarCromosomaDorado = document.getElementById("generarCromosomaDorado");
@@ -26,24 +26,22 @@ botonCrearCromosoma.addEventListener("click", () => {
 
 });
 
-//082016
-
 function botonesAsociarInsertar(auxAgregar, auxUnir) {
     primeraCasilla = null;
     if (auxAgregar) {
         asociarCasilla.classList.remove("presionado");
-        unirCasilla = false; // Desactivar unir casilla si se va a agregar
+        unirCasilla = false; 
         return;
     }
     if (auxUnir) {
         insertarCasilla.classList.remove("presionado");
-        agregarCasilla = false; // Desactivar agregar casilla si se va a unir
+        agregarCasilla = false; 
         return;
     }
 }
 
 insertarCasilla.addEventListener("click", () => {
-    agregarCasilla = insertarCasilla.classList.toggle("presionado"); // Desactivar unir casilla si se va a agregar
+    agregarCasilla = insertarCasilla.classList.toggle("presionado"); 
     botonesAsociarInsertar(true, false);
     console.log(`Agregar Casilla: ${agregarCasilla}`);
 });
@@ -164,19 +162,31 @@ function celdasListener() {
                 celda.classList.add("casilla");
                 console.log(`Casilla creada en el índice: ${index}`);
             } else {
-                for (const key in cromosoma) {
-                    if (Object.prototype.hasOwnProperty.call(cromosoma, key)) {
-                        console.log(key, index);
-                        if (key == index) {
-                            console.log(`Eliminando casilla en el índice: ${index}`);
-                            delete cromosoma[index];
-                            celda.style.backgroundColor = "";
-                            delete celda.dataset.casillaIndex;
-                            celda.classList.remove("casilla");
-                            return;
-                        }
-                    }
-                }
+                cromosomaCeldas[index].classList.remove("conectado", "up", "down", "left", "right");
+                cromosomaCeldas[index - anchoCromosomaValue]?.classList.remove("conectado", "down");
+                cromosomaCeldas[index + anchoCromosomaValue]?.classList.remove("conectado", "up");
+                cromosomaCeldas[index - 1]?.classList.remove("conectado", "right");
+                cromosomaCeldas[index + 1]?.classList.remove("conectado", "left");
+                celda.style.backgroundColor = "";
+                delete celda.dataset.casillaIndex;
+                celda.classList.remove("casilla", "conectado", "up", "down", "left", "right");
+                console.log(`Casilla eliminada en el índice: ${index}`);
+                delete cromosoma[index];
+                celda.textContent = "";
+                // for (const key in cromosoma) {
+                //     if (Object.prototype.hasOwnProperty.call(cromosoma, key)) {
+                //         console.log(key, index);
+                //         if (key == index) {
+                //             console.log(`Eliminando casilla en el índice: ${index}`);
+                //             delete cromosoma[index];
+                //             celda.style.backgroundColor = "";
+                //             delete celda.dataset.casillaIndex;
+                //             celda.classList.remove("casilla","conectado", "up", "down", "left", "right");
+                //             celda.textContent = "";
+                //             return;
+                //         }
+                //     }
+                // }
             }
             console.log(cromosoma);
         });
@@ -185,7 +195,7 @@ function celdasListener() {
 }
 
 async function generarCromosomaDorado() {
-    const GENES = await cargarGenesDesdeAPI();
+    const GENES = mezclar(await cargarGenesDesdeAPI());
     const maximoIndex = Math.max(...Object.keys(cromosoma).map(Number), 0);
     
     if (cromosomaDoradoNoRepetidos(0, cromosoma, GENES, maximoIndex)) {

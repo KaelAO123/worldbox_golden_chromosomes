@@ -66,18 +66,15 @@ button:hover {
     transition: background-color 0.3s, border-color 0.3s;
 }
 
-/* Casilla presionada */
 .presionado {
     background-color: red;
     border: 3px solid #000;
 }
 
-/* Casilla conectada */
 .conectado {
     background-color: #ffd54f;
 }
 
-/* Direcciones visuales de conexión */
 .cromosoma-cell.up::before,
 .cromosoma-cell.down::after,
 .cromosoma-cell.left::before,
@@ -87,7 +84,6 @@ button:hover {
     background-color: black;
 }
 
-/* Línea hacia arriba */
 .cromosoma-cell.up::before {
     width: 4px;
     height: 12px;
@@ -96,7 +92,6 @@ button:hover {
     transform: translateX(-50%);
 }
 
-/* Línea hacia abajo */
 .cromosoma-cell.down::after {
     width: 4px;
     height: 12px;
@@ -105,7 +100,6 @@ button:hover {
     transform: translateX(-50%);
 }
 
-/* Línea hacia la izquierda */
 .cromosoma-cell.left::before {
     width: 12px;
     height: 4px;
@@ -114,7 +108,6 @@ button:hover {
     transform: translateY(-50%);
 }
 
-/* Línea hacia la derecha */
 .cromosoma-cell.right::after {
     width: 12px;
     height: 4px;

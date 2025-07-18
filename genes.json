@@ -3,10 +3,10 @@
     "id": 0,
     "nombre": "Warfare III",
     "ramas": [
-      "Azul",
-      "Verde",
-      "Amarillo",
-      "Amarillo"
+      "amarillo",
+      "verde",
+      "verde",
+      "azul"
     ],
     "imagen": null
   },
@@ -14,10 +14,10 @@
     "id": 1,
     "nombre": "Warfare II",
     "ramas": [
-      "Rojo",
-      "Azul",
-      "Amarillo",
-      "Verde"
+      "amarillo",
+      "verde",
+      "amarillo",
+      "verde"
     ],
     "imagen": null
   },
@@ -25,10 +25,10 @@
     "id": 2,
     "nombre": "Warfare I",
     "ramas": [
-      "Azul",
-      "Rojo",
-      "Azul",
-      "Amarillo"
+      "azul",
+      "rojo",
+      "verde",
+      "amarillo"
     ],
     "imagen": null
   },
@@ -443,10 +443,10 @@
     "id": 40,
     "nombre": "Armor I",
     "ramas": [
-      "Verde",
-      "Azul",
-      "Verde",
-      "Verde"
+      "rojo",
+      "azul",
+      "verde",
+      "verde"
     ],
     "imagen": null
   }

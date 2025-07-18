@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="../css/style.css" />
+        <title>Document</title>
+    </head>
+
+    <body>
+        <h1>Creacion de Cromosomas Dorados</h1>
+        <section>
+            <input
+                type="number"
+                id="cromosomaAncho"
+                min="1"
+                max="8"
+                value="1"
+                placeholder="Ingrese el ancho de los genes" />
+            <input
+                type="number"
+                id="cromosomaAlto"
+                min="1"
+                max="8"
+                value="1"
+                placeholder="Ingrese el alto de los genes" />
+            <button id="crearCromosoma">Crear Espacios para Genes</button>
+            <button id="insertarCasilla">Insertar Casilla</button>
+            <button id="asociarCasillas">Asociar Casillas</button>
+            <button id="generarCromosomaDorado">Generar Cromosoma Dorado</button>
+            <div
+                id="cromosomaContainer"
+                class="cromosoma-container">
+                <div
+                    id="matrizCromosoma"
+                    class="cromosoma-matrix">
+                    <div class="cromosoma-row">
+                        <div class="cromosoma-cell"></div>
+                        <div class="cromosoma-cell"></div>
+                        <div class="cromosoma-cell"></div>
+                        <div class="cromosoma-cell"></div>
+                    </div>
+                    <div class="cromosoma-row">
+                        <div class="cromosoma-cell asociado-arriba"></div>
+                        <div class="cromosoma-cell"></div>
+                        <div class="cromosoma-cell"></div>
+                        <div class="cromosoma-cell"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script
+            type="module"
+            src="../js/utils.js"></script>
+        <script
+            type="module"
+            src="../js/Main.js"></script>
+    </body>
+</html>

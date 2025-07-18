@@ -1,41 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0" />
+        <title>Worldbox</title>
+        <link
+            rel="stylesheet"
+            href="../css/index.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <title>Document</title>
-</head>
+    <body>
+        <nav>
+            <div class="logo">
+                <h1>Aqui estuvo K de Kae</h1>
+                <img src="../img/logo.webp" alt="Logo">
 
-<body>
-    <h1>Creacion de Cromosomas Dorados</h1>
-    <section>
-        <input type="number" id="cromosomaAncho" min="1" max="8" value="1" placeholder="Ingrese el ancho de los genes">
-        <input type="number" id="cromosomaAlto" min="1" max="8" value="1" placeholder="Ingrese el alto de los genes">
-        <button id="crearCromosoma">Crear Espacios para Genes</button>
-        <button id="insertarCasilla">Insertar Casilla</button>
-        <button id="asociarCasillas">Asociar Casillas</button>
-        <button id="generarCromosomaDorado">Generar Cromosoma Dorado</button>
-        <div id="cromosomaContainer" class="cromosoma-container">
-            <div id="matrizCromosoma" class="cromosoma-matrix">
-                <div class="cromosoma-row">
-                    <div class="cromosoma-cell"></div>
-                    <div class="cromosoma-cell"></div>
-                    <div class="cromosoma-cell"></div>
-                    <div class="cromosoma-cell"></div>
-                </div>
-                <div class="cromosoma-row">
-                    <div class="cromosoma-cell asociado-arriba"></div>
-                    <div class="cromosoma-cell"></div>
-                    <div class="cromosoma-cell"></div>
-                    <div class="cromosoma-cell"></div>
-                </div>
             </div>
-        </div>
-    </section>
-    <script type="module" src="../js/utils.js"></script>
-    <script type="module" src="../js/Main.js"></script>
-</body>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="about.html">Acerca de</a></li>
+                <li><a href="cromosomaDorado.html">Generar Cromosoma Dorado</a></li>
+                <li><a href="genes.html">Ver/Editar Genes</a></li>
+            </ul>
+        </nav>
+        <main>
+            <section class="hero">
+                <h2>Bienvenido a la Generación de Cromosomas Dorados</h2>
+                <p>Esta herramienta te permite crear cromosomas dorados para tus especies en Worldbox.</p>
+                <p>
+                    Recuerda que en cada mundo los genes cambian el color de sus aristas, por lo que recomendamos que <a href="genes.html">edite los genes</a> de la manera que este en su partida o de
+                    la manera que mejor le interese
+                </p>
+            </section>
+            <section class="cuestiones">
+                <details>
+                    <summary>Por que?</summary>
+                    <p>Existen muchas razones para que tu, como jugador, quieras tener una especie con cromosomas dorados, entre esas razones pueda estar el ver como se desarrollan a comparacion de otras, el obtener un logro o el tener favoritismo hacia una especie, es por estas razones que se creo esta herramienta.</p>
+                </details>
+                <details>
+                    <summary>Que son los genes dorados?</summary>
+                <p>
+                    Los genes son las caracteristicas que tiene cada especie del juego, se hacen genes dorados cuando todas sus artistas se conectan perfectamente con las aristas del otro gen. Esta conexion va de acuerdo al color de las aristas, si son del mismo color se conectaran perfectamente y, si no, no se conectaran.
+                </p>
+                </details>
 
+                <details>
+                    <summary>Que son los cromosomas dorados?</summary>
+                    <p>Se dice que un cromosoma es un cromosoma dorado cuando todos sus genes son dorados, es decir, que todos los genes se conectan perfectamente con ellos mismos.</p>
+                </details>
+            </section>
+        </main>
+    </body>
 </html>

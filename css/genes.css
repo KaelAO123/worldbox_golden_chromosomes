@@ -1,0 +1,131 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1f1f1f;
+    color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 40px;
+}
+
+.card {
+    background-color: #2e2e2e;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card h2 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
+
+.cromo-wrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: auto;
+}
+
+.cromo-img {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.rama {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.up {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.right {
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.down {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.left {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.rojo {
+    background-color: #e74c3c;
+}
+
+.azul {
+    background-color: #3498db;
+}
+
+.amarillo {
+    background-color: #f1c40f;
+}
+
+.verde {
+    background-color: #2ecc71;
+}
+
+.guardar-btn {
+    margin-top: 12px;
+    display: block;
+    width: 50%;
+    padding: 10px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.guardar-btn:hover {
+    background-color: #219653;
+}
+.guardar-btn:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+}

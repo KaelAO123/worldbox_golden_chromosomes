@@ -1,6 +1,6 @@
-function mezclar(lista) {
+
+export function mezclar(lista) {
     let listaMezclada = [];
-    // Copiamos la lista original para no modificarla
     let listaOriginal = lista.slice();
 
     while (listaOriginal.length > 0) {
@@ -95,7 +95,23 @@ export function cromosomaDoradoNoRepetidos(casillaIndex, cromosomaCopy, genesDis
 export async function cargarGenesDesdeAPI() {
     const response = await fetch("http://localhost:5000/genes");
     const datos = await response.json();
-    return mezclar(datos); 
+    return datos; 
 }
 
-export default { Casilla, cromosomaDorado, cromosomaDoradoNoRepetidos, cargarGenesDesdeAPI };
+export async function actualizarGenesDesdeApi(datos){
+    const id = datos.id;
+    const response = await fetch(`http://localhost:5000/genes/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error('Error al actualizar el gen');
+        }
+        return response.json();
+    });    
+}
+
+export default { Casilla, cromosomaDorado, cromosomaDoradoNoRepetidos, cargarGenesDesdeAPI, mezclar, actualizarGenesDesdeApi};
