@@ -1,56 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0" />
-        <title>Worldbox</title>
-        <link
-            rel="stylesheet"
-            href="../css/index.css" />
-    </head>
+<html lang="es">
 
-    <body>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Worldbox</title>
+    <link rel="stylesheet" href="../css/index.css" />
+</head>
+
+<body>
+    <header>
+        <div class="fondo">
+            <img src="../img/fondo.jpg" alt="Fondo decorativo">
+        </div>
         <nav>
             <div class="logo">
-                <h1>Aqui estuvo K de Kae</h1>
-                <img src="../img/logo.webp" alt="Logo">
-
+                <img src="../img/logo.webp" alt="Logo Worldbox">
+                <h1>Worldbox</h1>
             </div>
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="about.html">Acerca de</a></li>
-                <li><a href="cromosomaDorado.html">Generar Cromosoma Dorado</a></li>
+                <li><a href="cromosomaDorado.html">Cromosoma Dorado</a></li>
                 <li><a href="genes.html">Ver/Editar Genes</a></li>
             </ul>
         </nav>
-        <main>
-            <section class="hero">
-                <h2>Bienvenido a la Generación de Cromosomas Dorados</h2>
+        <section class="hero">
+            <h2>Bienvenido a la Generación de Cromosomas Dorados</h2>
+            <div class="descripcion-pagina">
                 <p>Esta herramienta te permite crear cromosomas dorados para tus especies en Worldbox.</p>
                 <p>
-                    Recuerda que en cada mundo los genes cambian el color de sus aristas, por lo que recomendamos que <a href="genes.html">edite los genes</a> de la manera que este en su partida o de
-                    la manera que mejor le interese
+                    Recuerda que en cada mundo los genes cambian el color de sus aristas, por lo que recomendamos que
+                    <a href="genes.html">edites los genes</a> como se muestran en tu partida.
                 </p>
-            </section>
-            <section class="cuestiones">
-                <details>
-                    <summary>Por que?</summary>
-                    <p>Existen muchas razones para que tu, como jugador, quieras tener una especie con cromosomas dorados, entre esas razones pueda estar el ver como se desarrollan a comparacion de otras, el obtener un logro o el tener favoritismo hacia una especie, es por estas razones que se creo esta herramienta.</p>
-                </details>
-                <details>
-                    <summary>Que son los genes dorados?</summary>
-                <p>
-                    Los genes son las caracteristicas que tiene cada especie del juego, se hacen genes dorados cuando todas sus artistas se conectan perfectamente con las aristas del otro gen. Esta conexion va de acuerdo al color de las aristas, si son del mismo color se conectaran perfectamente y, si no, no se conectaran.
-                </p>
-                </details>
+            </div>
+        </section>
+    </header>
 
-                <details>
-                    <summary>Que son los cromosomas dorados?</summary>
-                    <p>Se dice que un cromosoma es un cromosoma dorado cuando todos sus genes son dorados, es decir, que todos los genes se conectan perfectamente con ellos mismos.</p>
-                </details>
-            </section>
-        </main>
-    </body>
+    <main class="contenido">
+        <aside class="cuestiones">
+            <details>
+                <summary>Por que?</summary>
+                <p>Para comparar desarrollos, obtener logros o por favoritismo hacia una especie, esta herramienta es
+                    útil.</p>
+            </details>
+            <details>
+                <summary>Que son los genes en Worldbox?</summary>
+                <p>Los genes en Worldbox son caracteristicas especiales que se da a cada subespecie en el juego, estas
+                    caracteristicas pueden ser beneficiosas o no. Estos genes, en el juego, cuentan con aristas de distintos colores (rojo, amarillo, verde y azul)</p>
+            </details>
+            <details>
+                <summary>Que son los genes dorados?</summary>
+                <p>
+                    Son genes dorados cuando tienen aristas que se conectan perfectamente por color con otro gen, formando enlaces
+                    ideales y se puede ver que son de dorados cuando cambian de color.
+                </p>
+            </details>
+            <details>
+                <summary>Que son los cromosomas dorados?</summary>
+                <p>
+                    Llamamos cromosoma dorado a aquel cromosoma que tiene todos sus genes dorados en su totalidad.
+                </p>
+            </details>
+        </aside>
+
+        <section class="texto-principal">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Kae estuvo aquí</p>
+    </footer>
+</body>
+
 </html>

@@ -3,7 +3,7 @@
     "id": 0,
     "nombre": "Warfare III",
     "ramas": [
-      "amarillo",
+      "verde",
       "verde",
       "verde",
       "azul"
@@ -15,8 +15,8 @@
     "nombre": "Warfare II",
     "ramas": [
       "amarillo",
-      "verde",
-      "amarillo",
+      "azul",
+      "rojo",
       "verde"
     ],
     "imagen": null
