@@ -1,14 +1,29 @@
-import { cargarGenesDesdeAPI, actualizarGenesDesdeApi } from "../js/Main.js";
+import { cargarGenesDesdeAPI, actualizarVariosGenes } from "./utils.js";
 const cromosomas = await cargarGenesDesdeAPI();
 
 const contenedor = document.getElementById("contenedor-cromosomas");
 
+const botonGuardarCambios = document.getElementById("guardarCambios")
 
-cromosomas.forEach((cromo) => {
+botonGuardarCambios.addEventListener("click", async () => {
+    const cambios = Object.values(elementosCambios);
+    try {
+        const resultados = (actualizarVariosGenes(cambios)
+    );
+        alert("Todos los genes actualizados correctamente:", resultados);
+    } catch (error) {
+        alert("Error actualizando genes:", error);
+    } 
+});
+
+
+const elementosCambios = {}
+
+cromosomas.forEach((cromo, i) => {
     const card = document.createElement("div");
     card.className = "card";
 
-    const nombre = document.createElement("h2");
+    const nombre = document.createElement("h3");
     nombre.textContent = cromo.nombre;
 
     const wrapper = document.createElement("div");
@@ -30,42 +45,21 @@ cromosomas.forEach((cromo) => {
     img.src = `../img/${cromo.id}.png`;
     img.alt = cromo.nombre;
     img.className = "cromo-img";
-    const botonGuardar = document.createElement("button");
-    botonGuardar.textContent = "Guardar";
-    botonGuardar.className = "guardar-btn";
-    botonGuardar.disabled = true;
-    botonGuardar.addEventListener("click", () => {
-        botonGuardar.disabled = true;
-        const datos = {
-            id: cromo.id,
-            nombre: cromo.nombre,
-            ramas:[ramaUp.value, ramaRight.value, ramaDown.value, ramaLeft.value]
-        };
-        console.log(datos.ramas, datos.id, datos.nombre);
-        
-        actualizarGenesDesdeApi(datos)
-            .then(() => {
-                alert("Cromosoma actualizado correctamente");
-            })
-            .catch((error) => {
-                console.error("Error al actualizar el cromosoma:", error);
-                alert("Error al actualizar el cromosoma");
-            });
-    });
     const ramas = [ramaUp, ramaRight, ramaDown, ramaLeft];
-    ramas.forEach(rama => {
+    ramas.forEach((rama, j) => {
         rama.addEventListener("change", (e) => {
             if (rama.className != e.target.className) {
                 return;
             }
             console.log(`Cambiando color de rama: ${rama.className} a ${e.target.value}`);
-            botonGuardar.disabled = false;
             const color = e.target.value.toLowerCase();
             rama.className = `rama ${rama.className.split(' ')[1]} ${color}`;
+            cromo.ramas[j] = e.target.value;
+            elementosCambios[i] = cromo;
         });
     });
     wrapper.append(...ramas, img);
-    card.append(nombre, wrapper,botonGuardar);
+    card.append(nombre, wrapper);
     contenedor.appendChild(card);
 })
 

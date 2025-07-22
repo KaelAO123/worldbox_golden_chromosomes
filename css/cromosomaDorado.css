@@ -1,0 +1,227 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-primario: #2197a3;
+  --color-secundario: #f71e6c;
+  --color-terciario: #f07868;
+  --color-cuaternario: #ebb970;
+  --color-quintario: #e7d3b0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--color-quintario);
+  color: #333;
+  line-height: 1.6;
+}
+
+/* NAVBAR */
+nav {
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5%;
+  background-color: var(--color-primario);
+}
+
+nav .logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: white;
+}
+
+nav .logo img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  transition: background 0.3s;
+}
+
+nav ul li a:hover {
+  background-color: var(--color-secundario);
+}
+
+main.contenido {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 40px 5%;
+}
+
+.texto-principal {
+  background-color: var(--color-terciario);
+  padding: 20px;
+  border-radius: 10px;
+  color: #000;
+  width: 100%;
+}
+
+.texto-principal h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+.formulario-cromosoma {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input, button {
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: none;
+}
+
+input {
+  border: 2px solid var(--color-primario);
+  outline: none;
+}
+
+button {
+  background-color: var(--color-cuaternario);
+  color: #000;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--color-secundario);
+  color: white;
+}
+
+.cromosoma-container {
+  overflow-x: auto;
+}
+
+.cromosoma-matrix {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.cromosoma-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.cromosoma-cell {
+  width: 80px;
+  height: 80px;
+  background-color: white;
+  border: 2px solid #000;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Estados especiales */
+.presionado {
+  background-color: var(--color-secundario);
+  border: 3px solid #000;
+}
+
+.conectado {
+  background-color: var(--color-cuaternario);
+}
+
+/* Conexiones visuales */
+.cromosoma-cell.up::before,
+.cromosoma-cell.down::after,
+.cromosoma-cell.left::before,
+.cromosoma-cell.right::after {
+  content: "";
+  position: absolute;
+  background-color: black;
+}
+
+.cromosoma-cell.up::before {
+  width: 4px;
+  height: 12px;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.cromosoma-cell.down::after {
+  width: 4px;
+  height: 12px;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.cromosoma-cell.left::before {
+  width: 12px;
+  height: 4px;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.cromosoma-cell.right::after {
+  width: 12px;
+  height: 4px;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+footer {
+  background-color: var(--color-primario);
+  text-align: center;
+  color: white;
+  padding: 15px 0;
+  margin-top: 40px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .formulario-cromosoma {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cromosoma-cell {
+    width: 60px;
+    height: 60px;
+  }
+}

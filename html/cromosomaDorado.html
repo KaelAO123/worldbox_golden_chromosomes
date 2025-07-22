@@ -1,63 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0" />
-        <link
-            rel="stylesheet"
-            href="../css/style.css" />
-        <title>Document</title>
-    </head>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/cromosomaDorado.css" />
+    <title>Cromosoma Dorado</title>
+  </head>
 
-    <body>
-        <h1>Creacion de Cromosomas Dorados</h1>
-        <section>
-            <input
-                type="number"
-                id="cromosomaAncho"
-                min="1"
-                max="8"
-                value="1"
-                placeholder="Ingrese el ancho de los genes" />
-            <input
-                type="number"
-                id="cromosomaAlto"
-                min="1"
-                max="8"
-                value="1"
-                placeholder="Ingrese el alto de los genes" />
-            <button id="crearCromosoma">Crear Espacios para Genes</button>
-            <button id="insertarCasilla">Insertar Casilla</button>
-            <button id="asociarCasillas">Asociar Casillas</button>
-            <button id="generarCromosomaDorado">Generar Cromosoma Dorado</button>
-            <div
-                id="cromosomaContainer"
-                class="cromosoma-container">
-                <div
-                    id="matrizCromosoma"
-                    class="cromosoma-matrix">
-                    <div class="cromosoma-row">
-                        <div class="cromosoma-cell"></div>
-                        <div class="cromosoma-cell"></div>
-                        <div class="cromosoma-cell"></div>
-                        <div class="cromosoma-cell"></div>
-                    </div>
-                    <div class="cromosoma-row">
-                        <div class="cromosoma-cell asociado-arriba"></div>
-                        <div class="cromosoma-cell"></div>
-                        <div class="cromosoma-cell"></div>
-                        <div class="cromosoma-cell"></div>
-                    </div>
-                </div>
+  <body>
+    <nav>
+      <div class="logo">
+        <img src="../img/logo.webp" alt="Logo Worldbox" />
+        <h1>Worldbox</h1>
+      </div>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="about.html">Acerca de</a></li>
+        <li><a href="cromosomaDorado.html">Cromosoma Dorado</a></li>
+        <li><a href="genes.html">Ver/Editar Genes</a></li>
+      </ul>
+    </nav>
+
+    <main class="contenido">
+      <section class="texto-principal">
+        <h2>Creación de Cromosomas Dorados</h2>
+        <div class="formulario-cromosoma">
+          <input
+            type="number"
+            id="cromosomaAncho"
+            min="1"
+            max="8"
+            value="1"
+            placeholder="Ancho del cromosoma" />
+          <input
+            type="number"
+            id="cromosomaAlto"
+            min="1"
+            max="8"
+            value="1"
+            placeholder="Alto del cromosoma" />
+          <button id="crearCromosoma">Crear Espacios</button>
+          <button id="insertarCasilla">Insertar Casilla</button>
+          <button id="asociarCasillas">Asociar Casillas</button>
+          <button id="generarCromosomaDorado">Generar Cromosoma Dorado</button>
+        </div>
+
+        <div id="cromosomaContainer" class="cromosoma-container">
+          <div id="matrizCromosoma" class="cromosoma-matrix">
+            <!-- Matriz de ejemplo -->
+            <div class="cromosoma-row">
+              <div class="cromosoma-cell"></div>
+              <div class="cromosoma-cell"></div>
+              <div class="cromosoma-cell"></div>
+              <div class="cromosoma-cell"></div>
             </div>
-        </section>
-        <script
-            type="module"
-            src="../js/utils.js"></script>
-        <script
-            type="module"
-            src="../js/Main.js"></script>
-    </body>
+            <div class="cromosoma-row">
+              <div class="cromosoma-cell asociado-arriba"></div>
+              <div class="cromosoma-cell"></div>
+              <div class="cromosoma-cell"></div>
+              <div class="cromosoma-cell"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 Worldbox - Todos los derechos reservados.</p>
+    </footer>
+
+    <script type="module" src="../js/utils2.js"></script>
+    <script type="module" src="../js/cromosomasDorados.js"></script>
+  </body>
 </html>

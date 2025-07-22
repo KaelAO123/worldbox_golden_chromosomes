@@ -1,220 +1,136 @@
-import { Casilla, cromosomaDoradoNoRepetidos, cargarGenesDesdeAPI, mezclar } from "../js/Main.js";
-
-const botonCrearCromosoma = document.getElementById("crearCromosoma");
-const botonGenerarCromosomaDorado = document.getElementById("generarCromosomaDorado");
-botonGenerarCromosomaDorado.addEventListener("click", generarCromosomaDorado);
-const asociarCasilla = document.getElementById("asociarCasillas");
-const insertarCasilla = document.getElementById("insertarCasilla");
-
-var cromosomaCeldas = document.querySelectorAll(".cromosoma-cell");
-
-var agregarCasilla = false;
-var primeraCasilla = null;
-var unirCasilla = false;
-
-var anchoCromosomaValue = 0;
-var altoCromosomaValue = 0;
-
-var cromosoma = {};
-
-botonCrearCromosoma.addEventListener("click", () => {
-    anchoCromosomaValue = parseInt(document.getElementById("cromosomaAncho").value);
-    altoCromosomaValue = parseInt(document.getElementById("cromosomaAlto").value);
-    crearCromosoma(anchoCromosomaValue, altoCromosomaValue);
-
-    console.log(`Cromosoma creado con ancho: ${anchoCromosomaValue} y alto: ${altoCromosomaValue}`);
-
-});
-
-function botonesAsociarInsertar(auxAgregar, auxUnir) {
-    primeraCasilla = null;
-    if (auxAgregar) {
-        asociarCasilla.classList.remove("presionado");
-        unirCasilla = false; 
-        return;
-    }
-    if (auxUnir) {
-        insertarCasilla.classList.remove("presionado");
-        agregarCasilla = false; 
-        return;
-    }
-}
-
-insertarCasilla.addEventListener("click", () => {
-    agregarCasilla = insertarCasilla.classList.toggle("presionado"); 
-    botonesAsociarInsertar(true, false);
-    console.log(`Agregar Casilla: ${agregarCasilla}`);
-});
-
-asociarCasilla.addEventListener("click", () => {
-    unirCasilla = asociarCasilla.classList.toggle("presionado");
-    botonesAsociarInsertar(false, true);
-    console.log(`Unir Casilla: ${unirCasilla}`);
-});
-
-const crearCromosoma = (ancho, alto) => {
-    cromosoma = {};
-    const matrizCromosoma = document.getElementById("matrizCromosoma");
-    let auxiliar = "";
-    for (let i = 0; i < alto; i++) {
-        auxiliar += `<div class="cromosoma-row">`;
-        for (let j = 0; j < ancho; j++) {
-            auxiliar += `<div class="cromosoma-cell"></div>`;
-        }
-        auxiliar += `</div>`;
-    }
-    matrizCromosoma.innerHTML = auxiliar;
-    cromosomaCeldas = document.querySelectorAll(".cromosoma-cell");
-    console.log(cromosomaCeldas);
-    
-    celdasListener();
-};
-
-
-function juntarCasilla(index, indexDestino, casilla) {
-    if (index - anchoCromosomaValue === indexDestino) {
-        if (casilla.conectarCasilla(0, cromosoma[indexDestino])) {
-            cromosomaCeldas[index].classList.add("conectado", "up");
-            cromosomaCeldas[indexDestino].classList.add("conectado", "down");
-            console.log(`Conectando casilla desde arriba ${index} con ${indexDestino}`);
-        } else {
-            cromosomaCeldas[index].classList.remove("conectado", "up");
-            cromosomaCeldas[indexDestino].classList.remove("conectado", "down");
-            console.log(`Desconectado casilla desde arriba ${index} con ${indexDestino}`);
-        }
-        return true;
-    }
-    if (index + anchoCromosomaValue === indexDestino) {
-        if (casilla.conectarCasilla(2, cromosoma[indexDestino])) {
-            cromosomaCeldas[index].classList.add("conectado", "down");
-            cromosomaCeldas[indexDestino].classList.add("conectado", "up");
-            console.log(`Conectando casilla desde abajo ${index} con ${indexDestino}`);
-        } else {
-            cromosomaCeldas[index].classList.remove("conectado", "down");
-            cromosomaCeldas[indexDestino].classList.remove("conectado", "up");
-            console.log(`Desconectado casilla desde abajo ${index} con ${indexDestino}`);
-        }
-        return true;
-    }
-    if (index - 1 === indexDestino && index % anchoCromosomaValue !== 0) {
-        if (casilla.conectarCasilla(3, cromosoma[indexDestino])) {
-            cromosomaCeldas[index].classList.add("conectado", "left");
-            cromosomaCeldas[indexDestino].classList.add("conectado", "right");
-            console.log(`Conectando casilla desde la izquierda ${index} con ${indexDestino}`);
-        } else {
-            cromosomaCeldas[index].classList.remove("conectado", "left");
-            cromosomaCeldas[indexDestino].classList.remove("conectado", "right");
-            console.log(`Desconectado casilla desde la izquierda ${index} con ${indexDestino}`);
-        }
-        return true;
-    }
-    if (index + 1 === indexDestino && (index + 1) % anchoCromosomaValue !== 0) {
-        if (casilla.conectarCasilla(1, cromosoma[indexDestino])) {
-            cromosomaCeldas[index].classList.add("conectado", "right");
-            cromosomaCeldas[indexDestino].classList.add("conectado", "left");
-            console.log(`Conectando casilla desde la derecha ${index} con ${indexDestino}`);
-        } else {
-            cromosomaCeldas[index].classList.remove("conectado", "right");
-            cromosomaCeldas[indexDestino].classList.remove("conectado", "left");
-            console.log(`Desconectado casilla desde la derecha ${index} con ${indexDestino}`);   
-        }
-        return true;
-    }
-    return false;
-}
-
-function celdasListener() {
-    cromosomaCeldas.forEach((celda, index) => {
-        celda.addEventListener("click", () => {
-            if (unirCasilla) {
-                if (primeraCasilla === null) {
-                    primeraCasilla = index;
-                    console.log(`Primera casilla seleccionada: ${primeraCasilla}`);
-                } else {
-                    if (primeraCasilla === index) {
-                        console.log("No se puede asociar una casilla consigo misma.");
-                        primeraCasilla = null;
-                        return;
-                    }
-                    const casillaActual = cromosoma[primeraCasilla];
-                    const casillaDestino = cromosoma[index];
-                    if (casillaActual && casillaDestino) {
-                        if (juntarCasilla(primeraCasilla, index, casillaActual)) {
-                            console.log("Conexion exitosa entre casillas.");
-                        } else {
-                            console.log("No se puede unir las casillas, no están adyacentes.");
-                        }
-                    } else {
-                        console.log("Una de las casillas no existe.");
-                    }
-                    primeraCasilla = null;
-                }
-                return;
-            }
-            if (agregarCasilla) {
-                if (celda.classList.contains("casilla")) {
-                    console.log(`Casilla ya existe en el índice: ${index}`);
-                    return;
-                }
-                cromosoma[index] = new Casilla();
-                celda.style.backgroundColor = "lightblue";
-                celda.dataset.casillaIndex = index;
-                celda.classList.add("casilla");
-                console.log(`Casilla creada en el índice: ${index}`);
-            } else {
-                cromosomaCeldas[index].classList.remove("conectado", "up", "down", "left", "right");
-                cromosomaCeldas[index - anchoCromosomaValue]?.classList.remove("conectado", "down");
-                cromosomaCeldas[index + anchoCromosomaValue]?.classList.remove("conectado", "up");
-                cromosomaCeldas[index - 1]?.classList.remove("conectado", "right");
-                cromosomaCeldas[index + 1]?.classList.remove("conectado", "left");
-                celda.style.backgroundColor = "";
-                delete celda.dataset.casillaIndex;
-                celda.classList.remove("casilla", "conectado", "up", "down", "left", "right");
-                console.log(`Casilla eliminada en el índice: ${index}`);
-                delete cromosoma[index];
-                celda.textContent = "";
-                // for (const key in cromosoma) {
-                //     if (Object.prototype.hasOwnProperty.call(cromosoma, key)) {
-                //         console.log(key, index);
-                //         if (key == index) {
-                //             console.log(`Eliminando casilla en el índice: ${index}`);
-                //             delete cromosoma[index];
-                //             celda.style.backgroundColor = "";
-                //             delete celda.dataset.casillaIndex;
-                //             celda.classList.remove("casilla","conectado", "up", "down", "left", "right");
-                //             celda.textContent = "";
-                //             return;
-                //         }
-                //     }
-                // }
-            }
-            console.log(cromosoma);
-        });
+export async function actualizarVariosGenes(datos) {
+    const response = await fetch(`http://localhost:5000/genes`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
     });
+
+    if (!response.ok) {
+        throw new Error(`Error al actualizar el gen con ID ${id}`);
+    }
+    const data = await response.json();
+    return data; 
     
+}
+export function mezclar(lista) {
+    let listaMezclada = [];
+    let listaOriginal = lista.slice();
+
+    while (listaOriginal.length > 0) {
+        let posicion = Math.floor(Math.random() * listaOriginal.length);
+        let elemento = listaOriginal.splice(posicion, 1)[0];
+        listaMezclada.unshift(elemento);
+    }
+
+    return listaMezclada;
 }
 
-async function generarCromosomaDorado() {
-    const GENES = mezclar(await cargarGenesDesdeAPI());
-    const maximoIndex = Math.max(...Object.keys(cromosoma).map(Number), 0);
-    
-    if (cromosomaDoradoNoRepetidos(0, cromosoma, GENES, maximoIndex)) {
-        for (const key in cromosoma) {
-            const casilla = cromosoma[key];
-            cromosomaCeldas[key].style.backgroundColor = "gold";
-            cromosomaCeldas[key].textContent = casilla.gen ? casilla.gen.nombre : "";
-            if (Object.prototype.hasOwnProperty.call(cromosoma, key)) {
-                const element = cromosoma[key];
-                if (!element.gen) {
-                    console.log(`Casilla ${key} sin gen asignado`);
-                    continue;
+export class Casilla {
+    constructor(gen) {
+        this.gen = gen
+        this.casillas = [null, null, null, null]
+    }
+
+    conectarCasilla(posicion, casilla) {
+        if (this.casillas[posicion]) {
+            this.desconectarCasilla(posicion, casilla);
+            return false;
+        }
+        this.casillas[posicion] = casilla
+        casilla.casillas[(posicion + 2) % 4] = this
+        return true;
+    }
+
+    desconectarCasilla(posicion, casilla) {
+        this.casillas[posicion] = null;
+        casilla.casillas[(posicion + 2) % 4] = null;
+    }
+
+    insertarGenDorado(gen) {        
+        for (let index = 0; index < this.casillas.length; index++) {
+            if (!this.casillas[index]) {
+                continue
+            }
+
+            if (this.casillas[index].gen) {
+                const ramaConexion = this.casillas[index].gen.ramas[((index + 2) % 4)]
+                const rama = gen.ramas[index]
+                if (ramaConexion != rama) {
+                    return false
                 }
-                console.log(`${key}: ${element.gen.nombre}`);
             }
         }
-    } else {
-        console.log("No fue posible generar un cromosoma dorado");
+        this.gen = gen
+        return true
     }
-    console.log(cromosoma);
-    
 }
+
+export function cromosomaDorado(casillaIndex, cromosoma, genes) {
+    if (casillaIndex == cromosoma.length) {
+        return true
+    }
+    const casillaActual = cromosoma[casillaIndex]
+    genes.forEach(gen => {
+        if (casillaActual.insertarGenDorado(gen)) {
+            if (cromosomaDorado(casillaIndex + 1, cromosoma, genes)) {
+                return true
+            }
+            casillaActual.gen = null
+        }
+    });
+    return false
+}
+
+export function cromosomaDoradoNoRepetidos(casillaIndex, cromosomaCopy, genesDisp, maxIndex) {
+    if (casillaIndex > maxIndex) {
+        return true
+    }
+    const casillaActual = cromosomaCopy[casillaIndex]
+    
+    for (let index = 0; index < genesDisp.length; index++) {
+        const gen = genesDisp[index] 
+        if (!casillaActual) {            
+            return cromosomaDoradoNoRepetidos(casillaIndex + 1, cromosomaCopy, genesDisp, maxIndex)
+        }
+        
+        if (casillaActual.insertarGenDorado(gen)) {
+            
+            const siguienteGen = genesDisp.slice(0, index).concat(genesDisp.slice(index + 1))
+            if (cromosomaDoradoNoRepetidos(casillaIndex + 1, cromosomaCopy, siguienteGen, maxIndex)) {
+                return true
+            }            
+            casillaActual.gen = null
+        }
+    }
+    return false
+}
+
+export async function cargarGenesDesdeAPI() {
+    const response = await fetch("http://localhost:5000/genes");
+    const datos = await response.json();
+    return datos; 
+}
+
+export async function actualizarGenesDesdeApi(datos) {
+    const id = datos.id;
+
+    const response = await fetch(`http://localhost:5000/genes/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+    });
+
+    if (!response.ok) {
+        throw new Error(`Error al actualizar el gen con ID ${id}`);
+    }
+    const data = await response.json();
+    return data; 
+}
+
+
+export default { Casilla, cromosomaDorado, cromosomaDoradoNoRepetidos, cargarGenesDesdeAPI, mezclar, actualizarGenesDesdeApi};
+

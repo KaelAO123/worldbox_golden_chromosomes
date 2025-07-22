@@ -4,9 +4,9 @@
     "nombre": "Warfare III",
     "ramas": [
       "verde",
-      "verde",
-      "verde",
-      "azul"
+      "azul",
+      "rojo",
+      "amarillo"
     ],
     "imagen": null
   },
@@ -14,16 +14,313 @@
     "id": 1,
     "nombre": "Warfare II",
     "ramas": [
-      "amarillo",
-      "azul",
       "rojo",
-      "verde"
+      "rojo",
+      "amarillo",
+      "azul"
     ],
     "imagen": null
   },
   {
     "id": 2,
     "nombre": "Warfare I",
+    "ramas": [
+      "rojo",
+      "rojo",
+      "rojo",
+      "rojo"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 3,
+    "nombre": "Stewardhip III",
+    "ramas": [
+      "rojo",
+      "rojo",
+      "rojo",
+      "rojo"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 4,
+    "nombre": "Stewardhip II",
+    "ramas": [
+      "azul",
+      "rojo",
+      "azul",
+      "rojo"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 5,
+    "nombre": "Stewardhip I",
+    "ramas": [
+      "verde",
+      "verde",
+      "azul",
+      "azul"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 6,
+    "nombre": "Stamina III",
+    "ramas": [
+      "amarillo",
+      "rojo",
+      "rojo",
+      "azul"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 7,
+    "nombre": "Stamina II",
+    "ramas": [
+      "verde",
+      "verde",
+      "rojo",
+      "rojo"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 8,
+    "nombre": "Stamina I",
+    "ramas": [
+      "amarillo",
+      "azul",
+      "amarillo",
+      "azul"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 9,
+    "nombre": "Speed III",
+    "ramas": [
+      "rojo",
+      "rojo",
+      "azul",
+      "rojo"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 10,
+    "nombre": "Speed II",
+    "ramas": [
+      "azul",
+      "verde",
+      "verde",
+      "azul"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 11,
+    "nombre": "Speed I",
+    "ramas": [
+      "rojo",
+      "amarillo",
+      "verde",
+      "rojo"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 12,
+    "nombre": "Bigger Size",
+    "ramas": [
+      "azul",
+      "amarillo",
+      "azul",
+      "verde"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 13,
+    "nombre": "Smaller Size",
+    "ramas": [
+      "rojo",
+      "verde",
+      "azul",
+      "amarillo"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 14,
+    "nombre": "Offspring IV",
+    "ramas": [
+      "verde",
+      "azul",
+      "amarillo",
+      "verde"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 15,
+    "nombre": "Offspring III",
+    "ramas": [
+      "amarillo",
+      "amarillo",
+      "azul",
+      "amarillo"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 16,
+    "nombre": "Offspring II",
+    "ramas": [
+      "verde",
+      "verde",
+      "azul",
+      "verde"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 17,
+    "nombre": "Offspring I",
+    "ramas": [
+      "rojo",
+      "azul",
+      "verde",
+      "azul"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 18,
+    "nombre": "Lifespan IV",
+    "ramas": [
+      "rojo",
+      "verde",
+      "verde",
+      "verde"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 19,
+    "nombre": "Lifespan III",
+    "ramas": [
+      "azul",
+      "amarillo",
+      "rojo",
+      "amarillo"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 20,
+    "nombre": "Lifespan II",
+    "ramas": [
+      "verde",
+      "rojo",
+      "rojo",
+      "verde"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 21,
+    "nombre": "Lifespan I",
+    "ramas": [
+      "amarillo",
+      "verde",
+      "amarillo",
+      "amarillo"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 22,
+    "nombre": "Intelligence III",
+    "ramas": [
+      "azul",
+      "amarillo",
+      "azul",
+      "rojo"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 23,
+    "nombre": "Intelligence II",
+    "ramas": [
+      "rojo",
+      "rojo",
+      "rojo",
+      "azul"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 24,
+    "nombre": "Intelligence I",
+    "ramas": [
+      "azul",
+      "verde",
+      "amarillo",
+      "rojo"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 25,
+    "nombre": "Health V",
+    "ramas": [
+      "verde",
+      "amarillo",
+      "amarillo",
+      "rojo"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 26,
+    "nombre": "Health IV",
+    "ramas": [
+      "amarillo",
+      "verde",
+      "azul",
+      "verde"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 27,
+    "nombre": "Health III",
+    "ramas": [
+      "azul",
+      "azul",
+      "azul",
+      "amarillo"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 28,
+    "nombre": "Health II",
+    "ramas": [
+      "rojo",
+      "amarillo",
+      "verde",
+      "verde"
+    ],
+    "imagen": null
+  },
+  {
+    "id": 29,
+    "nombre": "Health I",
     "ramas": [
       "azul",
       "rojo",
@@ -33,310 +330,13 @@
     "imagen": null
   },
   {
-    "id": 3,
-    "nombre": "Stewardhip III",
-    "ramas": [
-      "Amarillo",
-      "Azul",
-      "Verde",
-      "Verde"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 4,
-    "nombre": "Stewardhip II",
-    "ramas": [
-      "Azul",
-      "Amarillo",
-      "Rojo",
-      "Amarillo"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 5,
-    "nombre": "Stewardhip I",
-    "ramas": [
-      "Rojo",
-      "Rojo",
-      "Rojo",
-      "Verde"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 6,
-    "nombre": "Stamina III",
-    "ramas": [
-      "Azul",
-      "Amarillo",
-      "Amarillo",
-      "Verde"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 7,
-    "nombre": "Stamina II",
-    "ramas": [
-      "Rojo",
-      "Rojo",
-      "Azul",
-      "Amarillo"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 8,
-    "nombre": "Stamina I",
-    "ramas": [
-      "Azul",
-      "Verde",
-      "Azul",
-      "Verde"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 9,
-    "nombre": "Speed III",
-    "ramas": [
-      "Amarillo",
-      "Amarillo",
-      "Rojo",
-      "Amarillo"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 10,
-    "nombre": "Speed II",
-    "ramas": [
-      "Verde",
-      "Rojo",
-      "Rojo",
-      "Verde"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 11,
-    "nombre": "Speed I",
-    "ramas": [
-      "Rojo",
-      "Azul",
-      "Amarillo",
-      "Amarillo"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 12,
-    "nombre": "Bigger Size",
-    "ramas": [
-      "Azul",
-      "Azul",
-      "Rojo",
-      "Rojo"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 13,
-    "nombre": "Smaller Size",
-    "ramas": [
-      "Amarillo",
-      "Rojo",
-      "Rojo",
-      "Azul"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 14,
-    "nombre": "Offspring IV",
-    "ramas": [
-      "Rojo",
-      "Verde",
-      "Verde",
-      "Rojo"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 15,
-    "nombre": "Offspring III",
-    "ramas": [
-      "Azul",
-      "Azul",
-      "Rojo",
-      "Azul"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 16,
-    "nombre": "Offspring II",
-    "ramas": [
-      "Verde",
-      "Rojo",
-      "Rojo",
-      "Rojo"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 17,
-    "nombre": "Offspring I",
-    "ramas": [
-      "Amarillo",
-      "Verde",
-      "Amarillo",
-      "Azul"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 18,
-    "nombre": "Lifespan IV",
-    "ramas": [
-      "Amarillo",
-      "Rojo",
-      "Amarillo",
-      "Rojo"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 19,
-    "nombre": "Lifespan III",
-    "ramas": [
-      "Azul",
-      "Azul",
-      "Azul",
-      "Azul"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 20,
-    "nombre": "Lifespan II",
-    "ramas": [
-      "Rojo",
-      "Amarillo",
-      "Azul",
-      "Rojo"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 21,
-    "nombre": "Lifespan I",
-    "ramas": [
-      "Azul",
-      "Rojo",
-      "Verde",
-      "Azul"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 22,
-    "nombre": "Intelligence III",
-    "ramas": [
-      "Verde",
-      "Azul",
-      "Azul",
-      "Amarillo"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 23,
-    "nombre": "Intelligence II",
-    "ramas": [
-      "Amarillo",
-      "Amarillo",
-      "Azul",
-      "Verde"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 24,
-    "nombre": "Intelligence I",
-    "ramas": [
-      "Verde",
-      "Rojo",
-      "Verde",
-      "Amarillo"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 25,
-    "nombre": "Health V",
-    "ramas": [
-      "Rojo",
-      "Azul",
-      "Verde",
-      "Amarillo"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 26,
-    "nombre": "Health IV",
-    "ramas": [
-      "Amarillo",
-      "Rojo",
-      "Verde",
-      "Verde"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 27,
-    "nombre": "Health III",
-    "ramas": [
-      "Verde",
-      "Verde",
-      "Rojo",
-      "Amarillo"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 28,
-    "nombre": "Health II",
-    "ramas": [
-      "Amarillo",
-      "Azul",
-      "Rojo",
-      "Verde"
-    ],
-    "imagen": null
-  },
-  {
-    "id": 29,
-    "nombre": "Health I",
-    "ramas": [
-      "Verde",
-      "Amarillo",
-      "Amarillo",
-      "Azul"
-    ],
-    "imagen": null
-  },
-  {
     "id": 30,
     "nombre": "Diplomacy III",
     "ramas": [
-      "Verde",
-      "Verde",
-      "Azul",
-      "Rojo"
+      "verde",
+      "azul",
+      "rojo",
+      "verde"
     ],
     "imagen": null
   },
@@ -344,10 +344,10 @@
     "id": 31,
     "nombre": "Diplomacy II",
     "ramas": [
-      "Amarillo",
-      "Azul",
-      "Verde",
-      "Amarillo"
+      "rojo",
+      "amarillo",
+      "amarillo",
+      "amarillo"
     ],
     "imagen": null
   },
@@ -355,10 +355,10 @@
     "id": 32,
     "nombre": "Diplomacy I",
     "ramas": [
-      "Verde",
-      "Amarillo",
-      "Verde",
-      "Rojo"
+      "azul",
+      "rojo",
+      "amarillo",
+      "verde"
     ],
     "imagen": null
   },
@@ -366,10 +366,10 @@
     "id": 33,
     "nombre": "Damage III",
     "ramas": [
-      "Azul",
-      "Rojo",
-      "Amarillo",
-      "Rojo"
+      "amarillo",
+      "verde",
+      "verde",
+      "verde"
     ],
     "imagen": null
   },
@@ -377,10 +377,10 @@
     "id": 34,
     "nombre": "Damage II",
     "ramas": [
-      "Rojo",
-      "Verde",
-      "Amarillo",
-      "Azul"
+      "verde",
+      "azul",
+      "rojo",
+      "amarillo"
     ],
     "imagen": null
   },
@@ -388,10 +388,10 @@
     "id": 35,
     "nombre": "Damage I",
     "ramas": [
-      "Azul",
-      "Azul",
-      "Azul",
-      "Rojo"
+      "amarillo",
+      "amarillo",
+      "rojo",
+      "rojo"
     ],
     "imagen": null
   },
@@ -399,10 +399,10 @@
     "id": 36,
     "nombre": "Birth Rate I",
     "ramas": [
-      "Verde",
-      "Amarillo",
-      "Azul",
-      "Rojo"
+      "azul",
+      "amarillo",
+      "verde",
+      "rojo"
     ],
     "imagen": null
   },
@@ -410,10 +410,10 @@
     "id": 37,
     "nombre": "Attack Speed",
     "ramas": [
-      "Rojo",
-      "Amarillo",
-      "Amarillo",
-      "Azul"
+      "rojo",
+      "rojo",
+      "amarillo",
+      "verde"
     ],
     "imagen": null
   },
@@ -421,10 +421,10 @@
     "id": 38,
     "nombre": "Armor III",
     "ramas": [
-      "Verde",
-      "Rojo",
-      "Azul",
-      "Azul"
+      "verde",
+      "verde",
+      "amarillo",
+      "azul"
     ],
     "imagen": null
   },
@@ -432,10 +432,10 @@
     "id": 39,
     "nombre": "Armor II",
     "ramas": [
-      "Amarillo",
-      "Verde",
-      "Verde",
-      "Rojo"
+      "rojo",
+      "azul",
+      "amarillo",
+      "rojo"
     ],
     "imagen": null
   },
@@ -443,10 +443,10 @@
     "id": 40,
     "nombre": "Armor I",
     "ramas": [
-      "rojo",
       "azul",
-      "verde",
-      "verde"
+      "amarillo",
+      "azul",
+      "azul"
     ],
     "imagen": null
   }

@@ -1,24 +1,44 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0" />
-        <title>Cromosomas Dorados</title>
-        <link
-            rel="stylesheet"
-            href="../css/genes.css" />
-    </head>
-    <body>
-        <h1>Cromosomas Dorados</h1>
-        <div
-            class="grid-container"
-            id="contenedor-cromosomas">
-            
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cromosomas Dorados</title>
+    <link rel="stylesheet" href="../css/genes.css" />
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img src="../img/logo.webp" alt="Logo Worldbox" />
+            <h1>Worldbox</h1>
         </div>
-        <script
-            type="module"
-            src="../js/genes.js"></script>
-    </body>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="about.html">Acerca de</a></li>
+            <li><a href="cromosomaDorado.html">Cromosoma Dorado</a></li>
+            <li><a href="genes.html">Ver/Editar Genes</a></li>
+        </ul>
+    </nav>
+
+    <main class="contenido">
+        <div class="boton-guardar">
+            <button id="guardarCambios">Guardar Todos los Cambios</button>
+        </div>
+        <section class="texto-principal">
+            <h2>Cromosomas Dorados</h2>
+            <div class="grid-container" id="contenedor-cromosomas">
+            
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Worldbox - Todos los derechos reservados.</p>
+    </footer>
+
+    <script type="module" src="../js/genes.js"></script>
+</body>
+
 </html>

@@ -50,6 +50,7 @@ def agregar_gen():
     nuevo["id"]=max([i["id"] for i in genes], default=-1)+1
     genes.append(nuevo)
     escribir_datos(genes)
+    
     return jsonify(nuevo),201
 
 @app.route("/genes/<int:id>",methods=["PUT"])
@@ -63,6 +64,19 @@ def actualizar_gen(id):
     gen.update(actualizacion)
     escribir_datos(genes)
     return jsonify(gen)
+
+@app.route("/genes", methods=["PUT"])
+def actualizar_varios_genes():
+    actualizaciones = request.get_json()
+    genes = leer_datos()
+
+    for actualizacion in actualizaciones:
+        gen = next((g for g in genes if g["id"] == actualizacion["id"]), None)
+        if gen:
+            gen.update(actualizacion)
+
+    escribir_datos(genes)
+    return jsonify({"status": "ok", "actualizados": len(actualizaciones)})
 
 if __name__ == '__main__':
     app.run(debug=True)
